@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbef400f8803d695d959d8a3c40911c5, type: 3}
+  m_Name: AdConfig
+  m_EditorClassIdentifier:
+  <IsEnabled>k__BackingField: 1
+  <DebugMode>k__BackingField: 0
+  androidData:
+    InterstitialAdUnitId: 40762ec90fd6c39e
+    BannerAdUnitId: 2f3ae384121233e7
+    RewardedAdUnitId: 713aaf03435ef864
+  <InterstitialAdEnabled>k__BackingField: 1
+  <ShowInterstitialWhenLevelEnds>k__BackingField: 0
+  <InterstitialFirstAllowedLevel>k__BackingField: 1
+  <InterstitialInitialCooldown>k__BackingField: 30
+  <InterstitialRegularCooldown>k__BackingField: 90
+  <AutoShowInterstitialAfterCooldown>k__BackingField: 0
+  <BannerAdEnabled>k__BackingField: 0
+  <ShowBannerAtStart>k__BackingField: 0
+  <BannerRefreshInterval>k__BackingField: 0
+  <BannerBackgroundColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <RewardedAdEnabled>k__BackingField: 1

@@ -1,0 +1,254 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlasterBodySkinned
+  m_Shader: {fileID: 4800000, guid: 1344c302b40616a49afa28f8c43d4fae, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - TCP2_REFLECTIONS_FRESNEL
+  - TCP2_RIM_LIGHTING_LIGHTMASK
+  - TCP2_SHADOW_LIGHT_COLOR
+  - TCP2_SPECULAR
+  - TCP2_SPECULAR_STYLIZED
+  - TCP2_UV_NORMALS_FULL
+  - _RECEIVE_SHADOWS_OFF
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties:
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 2e3dfec9912f1ea42b1d433811ec96f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 50f477a6b2d85b244ab67f44dbeb9c52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: 2e3dfec9912f1ea42b1d433811ec96f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _MatCapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _MatCapTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _OcclusionMap:
+        m_Texture: {fileID: 2800000, guid: 2e3dfec9912f1ea42b1d433811ec96f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _Ramp:
+        m_Texture: {fileID: 2800000, guid: 685aefbdfb5e9ce48b162113352fcb04, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _ReflectionTex:
+        m_Texture: {fileID: 2800000, guid: 2e3dfec9912f1ea42b1d433811ec96f0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _ShadowBaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      _AlphaClip: 0
+      _AlphaToMask: 0
+      _Ambient: 1
+      _AmbientOcclusion: 0.85
+      _Ambient_Occlusion: 0
+      _Amplitude: 1
+      _Blend: 0
+      _BlendModePreserveSpecular: 1
+      _BlendOp: 0
+      _BlendSharpness: 1
+      _Blend_Sharpness: 2.57
+      _BlurAmount: 0.0128
+      _Boarder_Size: 1.59
+      _Boarder_Strength: -1
+      _BumpScale: 1
+      _ClearCoat: 0
+      _ClearCoatMask: 0.714
+      _ClearCoatSmoothness: 1
+      _Cull: 2
+      _Cutoff: 0.5
+      _DetailAlbedoMapScale: 1
+      _DetailNormalMapScale: 1
+      _DirectIntensityOutline: 1
+      _DirtAmount: 0.1
+      _Distortion_Speed: 1
+      _DstBlend: 0
+      _DstBlendAlpha: 0
+      _DstBlendOutline: 0
+      _EdgeWidth: 0.05
+      _EmissionChannel: 4
+      _EmissionUVSet: 0
+      _EnvironmentReflections: 1
+      _FresnelMax: 1.5
+      _FresnelMin: 0
+      _FresnelPower: 10
+      _GlossMapScale: 0
+      _Glossiness: 0
+      _GlossinessSource: 0
+      _GlossyReflections: 0
+      _IndirectIntensity: 1
+      _IndirectIntensityOutline: 0
+      _MainUVSet: 0
+      _MatCapMaskChannel: 0
+      _MatCapType: 0
+      _Metalic: 0
+      _Metallic: 0
+      _Mode: 0
+      _NoiseScale: 0.01
+      _Noise_Scale: 0
+      _NormalStrength: 0.25
+      _NormalStrength1: 0.17
+      _NormalStrength2: 0.8
+      _NormalsSource: 0
+      _NormalsUVType: 0
+      _ObjectSeed: 0
+      _Occlusion: 1
+      _OcclusionChannel: 0
+      _OcclusionStrength: 0.887
+      _Offset1: 0
+      _Offset2: 0
+      _Outline: 1
+      _OutlineLightingType: 0
+      _OutlineLightingTypeURP: 0
+      _OutlineMaxWidth: 1
+      _OutlineMinWidth: 1
+      _OutlinePixelSizeType: 0
+      _OutlineTextureLOD: 5
+      _OutlineTextureType: 0
+      _OutlineWidth: 0.4
+      _Parallax: 0.005
+      _PigmentAmount: 0.15
+      _QueueControl: 0
+      _QueueOffset: 0
+      _RampBands: 10
+      _RampBandsSmoothing: 1
+      _RampOffset: 0
+      _RampScale: 1
+      _RampSmooth: 0.2
+      _RampSmoothAdd: 0.75
+      _RampSmoothing: 0.603
+      _RampThreshold: 0.663
+      _RampType: 0
+      _ReceiveShadows: 0
+      _ReceiveShadowsOff: 0
+      _ReflectionMapType: 7
+      _ReflectionSmoothness: 1
+      _RenderingMode: 0
+      _RimMax: 1.113
+      _RimMin: 0.689
+      _RimStrength: 0.5
+      _Scrolling_Speed: 1
+      _Seed: 12.97
+      _ShadowColorLightAtten: 1
+      _Shininess: 0
+      _SingleIndirectColor: 0
+      _Smoothness: 0.4
+      _SmoothnessSource: 0
+      _SmoothnessTextureChannel: 0
+      _SnowAmount: 0.75
+      _SnowGlossiness: 0.5
+      _SnowMetallic: 0
+      _SpecBlend: 1
+      _SpecPower: 19.6
+      _SpecSmooth: 1
+      _SpecSource: 0
+      _SpecStrength: 0.26
+      _SpecularHighlights: 1
+      _SpecularMapType: 0
+      _SpecularRoughness: 0.1
+      _SpecularToonSize: 0.197
+      _SpecularToonSmoothness: 0.873
+      _SpecularType: 1
+      _Speed: 0.25
+      _SrcBlend: 1
+      _SrcBlendAlpha: 1
+      _SrcBlendOutline: 0
+      _StrokeBlendingNoiseScale: 1
+      _StrokeBlendingNoiseStrength: 0.5
+      _StrokeRandomness: 0.557
+      _StrokeScale: 1.1
+      _Surface: 0
+      _SurfaceMovSpeed: 1
+      _TCP2_DISABLE_WRAPPED_LIGHT: 1
+      _TCP2_RAMPTEXT: 0
+      _TCP2_SPEC_TOON: 0
+      _TCP2_STYLIZED_FRESNEL: 0
+      _TexLod: 5
+      _ThresholdScale: 4
+      _ThresholdStrength: 1
+      _UVSec: 0
+      _UseAlphaTest: 0
+      _UseBlendingNoise: 1
+      _UseEmission: 0
+      _UseFresnelReflections: 1
+      _UseMatCap: 0
+      _UseMatCapMask: 0
+      _UseMobileMode: 1
+      _UseNormalMap: 0
+      _UseOcclusion: 0
+      _UseOutline: 1
+      _UseReflections: 0
+      _UseRim: 0
+      _UseRimLightMask: 1
+      _UseShadowTexture: 0
+      _UseSpecular: 1
+      _Variation: 1
+      _VoxelSize: 0.01
+      _WorkflowMode: 1
+      _ZSmooth: -0.5
+      _ZTest: 4
+      _ZWrite: 1
+      __dummy__: 0
+    m_Colors:
+      _BaseColor: {r: 1, g: 0, b: 0, a: 1}
+      _Boarder_Color: {r: 0, g: 0, b: 0, a: 0.19215687}
+      _BoxDims: {r: 2, g: 2, b: 2, a: 2}
+      _Color: {r: 0.16785327, g: 0.51345813, b: 0.8679245, a: 1}
+      _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+      _Emission1: {r: 1, g: 0, b: 0, a: 1}
+      _Emission2: {r: 0, g: 0.00095696317, b: 0.0014801923, a: 1}
+      _EmissionColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
+      _FlowDirection: {r: 1, g: 0, b: 0, a: 0}
+      _FlowDirection1: {r: 0.05, g: 0, b: 0, a: 1}
+      _FlowDirection2: {r: 0, g: 0.05, b: 0, a: 1}
+      _HColor: {r: 0.95, g: 0.95, b: 0.95, a: 1}
+      _MatCapColor: {r: 0.02, g: 0.02, b: 0.02, a: 1}
+      _MovementDirection: {r: 0, g: -1, b: 0, a: 1}
+      _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+      _ReflectionColor: {r: 1, g: 0, b: 0, a: 1}
+      _RimColor: {r: 1, g: 1, b: 1, a: 1}
+      _SColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+      _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
+      _SnowColor: {r: 1, g: 1, b: 1, a: 1}
+      _SnowDirection: {r: 0, g: 1, b: 0, a: 1}
+      _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+      _SpecularColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+      _VariationColorA: {r: 1, g: 0.97446656, b: 0.9386792, a: 0}
+      _VariationColorB: {r: 0.97900003, g: 0.97900003, b: 0.97900003, a: 1}
+      _WindDirection: {r: 1, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

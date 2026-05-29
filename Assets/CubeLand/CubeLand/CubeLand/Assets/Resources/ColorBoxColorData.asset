@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1dc9b347e882b6d4ff2198f0276f0a7, type: 3}
+  m_Name: ColorBoxColorData
+  m_EditorClassIdentifier:
+  colors:
+  - colorType: 0
+    bodyMaterial: {fileID: 2100000, guid: c5228184f33b06441aa036a064e0fc13, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 105cf9d9fb42c3349b8084ac82df6bde, type: 2}
+    particleMaterial: {fileID: 2100000, guid: bffe5296a1929ef4c9c722274346f949, type: 2}
+  - colorType: 1
+    bodyMaterial: {fileID: 2100000, guid: c53d01d6c31f3364ea9c75917573a996, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 83ebcc6d4639e594594690da2449b538, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 65b4852779cd9eb4782cbeafacec465f, type: 2}
+  - colorType: 2
+    bodyMaterial: {fileID: 2100000, guid: 3426e47fff3b169419de7131cea396d6, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: af9b840e3e0407e4fbf2617fc2956001, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 5d7e16b43db27114f900a5c64ecc57b5, type: 2}
+  - colorType: 3
+    bodyMaterial: {fileID: 2100000, guid: e927e586b408ffe40af7577c9e638a94, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 275db138feca2e44db2852f2fe1747d9, type: 2}
+    particleMaterial: {fileID: 2100000, guid: b6c3d9a58b422c64b99a1a5f9820f6f3, type: 2}
+  - colorType: 4
+    bodyMaterial: {fileID: 2100000, guid: 96586f7c85ecc7a4ca46f94b6c08bf66, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 88b7e490ccf13a74d972f072b8864bb1, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 6be26001244098449b5f9df2d783332d, type: 2}
+  - colorType: 5
+    bodyMaterial: {fileID: 2100000, guid: 8c16b377b3349a94cab8f87a1f35b7b0, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: c8d8b50fe9cc59a43909b61b88e8dcf2, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 07232003f88087841aa2479d63bb6d91, type: 2}
+  - colorType: 6
+    bodyMaterial: {fileID: 2100000, guid: 3f6b249ee27f2014183d8d26c0bedfa2, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 53ee36cd85c1c1e4e97deeeac5271984, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 0fc9aec8d96f2c244bcfa54f6afd8d36, type: 2}
+  - colorType: 7
+    bodyMaterial: {fileID: 2100000, guid: d9b2b1535501c7a41a3eac0999d962d4, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: a069048382b38bf419ec8ac68a76a752, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 9fb9919d43b120a468c8402e9be4d185, type: 2}
+  - colorType: 8
+    bodyMaterial: {fileID: 2100000, guid: 153c13c50436f114cbb630b18a16cb39, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 88bee0e5dc33c2f48872993def75077e, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 5b2ceb258adc5f04b88bb71b8186a785, type: 2}
+  - colorType: 9
+    bodyMaterial: {fileID: 2100000, guid: 88e50a4870c81624d9ca25b53266ebb0, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: e0aa89b9b9a440e4c950de4698b84cea, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 2619ef8db44910148ae8ae84b681d0bf, type: 2}
+  - colorType: 10
+    bodyMaterial: {fileID: 2100000, guid: eded177dd56e8c340b9fb8b581a1764c, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 231d56e1f5957fc4b80d123688992c89, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 10a0984a5f957b04abfad52b075c1bd7, type: 2}
+  - colorType: 11
+    bodyMaterial: {fileID: 2100000, guid: 53abe569dd6be9a4dae69d7db1c928ef, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: fe356f01e94cee44b9c0c5dc524a6083, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 99fbfb089292caf4897f9c5a597799b6, type: 2}
+  - colorType: 12
+    bodyMaterial: {fileID: 2100000, guid: 6efb1589caabc69438f638646aa20775, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: c0846b3ae3b7e1e4bbc7ef92bfc1170d, type: 2}
+    particleMaterial: {fileID: 2100000, guid: ca3aa87f442a83844a06e15821e8d937, type: 2}
+  - colorType: 13
+    bodyMaterial: {fileID: 2100000, guid: 928cd91447e9e77448c563abb29bebd5, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 7f5410a0a5d32e545986937e3c0eeda1, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 1781dc78317def34ebb9def4bebf0aad, type: 2}
+  - colorType: 14
+    bodyMaterial: {fileID: 2100000, guid: eeef4a9d55e108d468614587da5d61ca, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 9cbfa50ed29cf07409fb72d606a1cc59, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 9310612e8fe9de44a8905cbedbe58d96, type: 2}
+  - colorType: 15
+    bodyMaterial: {fileID: 2100000, guid: 600088d07cd90914892fb2442b3cff43, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 5c8c0bb281505284eaea1a02bc18d3dc, type: 2}
+    particleMaterial: {fileID: 2100000, guid: f465ac3469946594f87830771a6c5201, type: 2}
+  - colorType: 16
+    bodyMaterial: {fileID: 2100000, guid: cae212cae6c3b0c4eb0ecf771ab4ae21, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: e8cd0be3bcf2ef44f9596e653103aead, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 0759f848e13afbc4fae16e5a758fcfa9, type: 2}
+  - colorType: 17
+    bodyMaterial: {fileID: 2100000, guid: aa524e466804a9644b8c78457c876b21, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 840b9c0b2e54f784c8b383536faf02bb, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 288ec77acf903d5439d38ea04df50a3e, type: 2}
+  - colorType: 18
+    bodyMaterial: {fileID: 2100000, guid: 35b0b5eb4fd52f344bd8f86e6e574a32, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 9fe7f3bd46b507c4a86b67c93352e7ba, type: 2}
+    particleMaterial: {fileID: 2100000, guid: a42ec7ef77918bd43bb8ac1b842eeec5, type: 2}
+  - colorType: 19
+    bodyMaterial: {fileID: 2100000, guid: 670d72c941c5a2d4e90a0fcf5d705df4, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 7db84eaab65f6634b9ecc9e2414bfb6f, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 84a45df3666b2914ea6f9ac206608a2a, type: 2}
+  - colorType: 20
+    bodyMaterial: {fileID: 2100000, guid: 1db8dd312141a8e4982e83bf6089da7c, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 9dae1d6df2aecd9458c71ec36ac71ebe, type: 2}
+    particleMaterial: {fileID: 2100000, guid: 8cefe15d82f72274390f92c2e38522e7, type: 2}
+  - colorType: 21
+    bodyMaterial: {fileID: 2100000, guid: b7ca615d6bce4b14e9957af9a2cd2c6c, type: 2}
+    plankBodyMaterial: {fileID: 2100000, guid: 8bfe4acc432e8d3408ca76548593d348, type: 2}
+    particleMaterial: {fileID: 2100000, guid: fec2f437794411649bd06b2889a3f1d4, type: 2}

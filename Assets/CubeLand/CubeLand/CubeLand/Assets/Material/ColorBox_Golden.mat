@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ColorBox_Golden
+  m_Shader: {fileID: 4800000, guid: 3d0da3a5d12b44d428a828b9fd787f0f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _USE_NORMALMAP
+  - _USE_OVERLAY_MASK2
+  - _USE_SHADOW_RAMP
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses: []
+  m_LockedProperties:
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+      _BaseMultiplyTex:
+        m_Texture: {fileID: 2800000, guid: b51eb6a44f781c945b62fb68748e8a42, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 6fe6e40790ea96344ac41a5f5715bd87, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _MainTex:
+        m_Texture: {fileID: 2800000, guid: 04043d197c89a4748a417568ace9c5d3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _OverlayMask2Tex:
+        m_Texture: {fileID: 2800000, guid: cadf2f99c3395f24793cb8d336bce091, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+      _OverlayTex:
+        m_Texture: {fileID: 2800000, guid: 7654b18a53f44cf4cbc6a679711675ba, type: 3}
+        m_Scale: {x: 0.41, y: 1.64}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: {}
+    m_Floats:
+      Normal_Blend: 0.5
+      _Alpha: 0.8
+      _AlphaClip: 0
+      _AlphaToMask: 0
+      _Ambient: 1
+      _AmbientOcclusion: 0.85
+      _Ambient_Occlusion: 0
+      _Amplitude: 1
+      _BaseMultiplyStrength: 1
+      _Blend: 0
+      _BlendModePreserveSpecular: 1
+      _BlendOp: 0
+      _BlendSharpness: 1
+      _Blend_Sharpness: 2.57
+      _BlurAmount: 0.0128
+      _Boarder_Size: 1.59
+      _Boarder_Strength: -1
+      _BumpScale: 2
+      _ClearCoat: 0
+      _ClearCoatMask: 0.714
+      _ClearCoatSmoothness: 1
+      _Cull: 2
+      _Cutoff: 0.574
+      _DecalMeshBiasType: 0
+      _DecalMeshDepthBias: 0
+      _DecalMeshViewBias: 0
+      _DetailAlbedoMapScale: 1
+      _DetailNormalMapScale: 1
+      _DirectIntensityOutline: 1
+      _DirtAmount: 0.1
+      _Distortion_Speed: 1
+      _DoubleSided: 0
+      _DrawOrder: 0
+      _DstBlend: 0
+      _DstBlendAlpha: 0
+      _DstBlendOutline: 0
+      _EdgeWidth: 0.05
+      _EmissionChannel: 4
+      _EnvironmentReflections: 1
+      _FresnelMax: 1.5
+      _FresnelMin: 0
+      _FresnelPower: 10
+      _GlossMapScale: 0
+      _Glossiness: 0
+      _GlossinessSource: 0
+      _GlossyReflections: 0
+      _IndirectIntensity: 1
+      _IndirectIntensityOutline: 0
+      _METALNESS: 0.33
+      _MatCapMaskChannel: 0
+      _MatCapType: 0
+      _MeltAmount: 1
+      _MeltAxis: 0
+      _MeltSoftness: 0.362
+      _Metalic: 0
+      _Metallic: 0
+      _Mode: 0
+      _NoiseScale: 0.01
+      _Noise_Scale: 0
+      _NormalStrength: 0.25
+      _NormalStrength1: 0.17
+      _NormalStrength2: 0.8
+      _NormalsSource: 0
+      _NormalsUVType: 0
+      _OPACITY: 1
+      _ObjectSeed: 0
+      _Occlusion: 1
+      _OcclusionChannel: 0
+      _OcclusionStrength: 0.887
+      _Offset1: 0
+      _Offset2: 0
+      _Opacity_On_Centre: 1
+      _Outline: 1
+      _OutlineLightingType: 0
+      _OutlineLightingTypeURP: 0
+      _OutlineMaxWidth: 1
+      _OutlineMinWidth: 1
+      _OutlinePixelSizeType: 3
+      _OutlineTextureLOD: 5
+      _OutlineTextureType: 0
+      _OutlineWidth: 1
+      _OverlayIntensity: 0.88
+      _OverlayMask2Scale: 0.66
+      _OverlayMask2Softness: 0.25
+      _OverlayVisibility: 0
+      _Parallax: 0.005
+      _PigmentAmount: 0.15
+      _Power: 2.65
+      _QueueControl: 0
+      _QueueOffset: 0
+      _RampAxis: 1
+      _RampBands: 2
+      _RampBandsSmoothing: 1
+      _RampOffset: 0
+      _RampScale: 1
+      _RampSmooth: 0.2
+      _RampSmoothAdd: 0.75
+      _RampSmoothing: 0.651
+      _RampThreshold: 0.562
+      _RampType: 2
+      _ReceiveShadows: 0
+      _ReceiveShadowsOff: 0
+      _ReflectionMapType: 7
+      _ReflectionSmoothness: 1
+      _RenderingMode: 2
+      _RimMax: 0
+      _RimMin: 0.023
+      _RimStrength: 0.5
+      _SPECULAR_IOR: 1.5
+      _SPECULAR_ROUGHNESS: 0
+      _Scrolling_Speed: 1
+      _Seed: 12.97
+      _ShadowColorLightAtten: 1
+      _Shininess: 0
+      _SingleIndirectColor: 0
+      _Smoothness: 1
+      _SmoothnessSource: 0
+      _SmoothnessTextureChannel: 0
+      _SnowAmount: 0.75
+      _SnowGlossiness: 0.5
+      _SnowMetallic: 0
+      _SpecBlend: 1
+      _SpecPower: 19.6
+      _SpecSmooth: 1
+      _SpecSource: 0
+      _SpecStrength: 0.26
+      _Specular: 0.093
+      _SpecularHighlights: 1
+      _SpecularMapType: 0
+      _SpecularRoughness: 0.1
+      _SpecularToonSize: 0.527
+      _SpecularToonSmoothness: 1
+      _SpecularType: 1
+      _Speed: 0.25
+      _SrcBlend: 1
+      _SrcBlendAlpha: 1
+      _SrcBlendOutline: 0
+      _StrokeBlendingNoiseScale: 1
+      _StrokeBlendingNoiseStrength: 0.5
+      _StrokeRandomness: 0.557
+      _StrokeScale: 1.1
+      _Surface: 0
+      _SurfaceMovSpeed: 1
+      _TCP2_DISABLE_WRAPPED_LIGHT: 1
+      _TCP2_RAMPTEXT: 0
+      _TCP2_SPEC_TOON: 0
+      _TCP2_STYLIZED_FRESNEL: 0
+      _TexLod: 5
+      _ThresholdScale: 4
+      _ThresholdStrength: 1
+      _UVSec: 0
+      _UseAlphaTest: 0
+      _UseBaseMultiply: 0
+      _UseBlendingNoise: 1
+      _UseEmission: 0
+      _UseFresnelReflections: 1
+      _UseMatCap: 0
+      _UseMatCapMask: 0
+      _UseMelt: 0
+      _UseMobileMode: 1
+      _UseNormalMap: 1
+      _UseOcclusion: 0
+      _UseOutline: 0
+      _UseOverlay: 0
+      _UseOverlayMask2: 1
+      _UseReflections: 0
+      _UseRim: 1
+      _UseRimLightMask: 0
+      _UseShadowRamp: 1
+      _UseShadowTexture: 0
+      _UseSpecular: 1
+      _Variation: 1
+      _VoxelSize: 0.01
+      _WorkflowMode: 1
+      _ZSmooth: -0.5
+      _ZWrite: 1
+      __dummy__: 0
+    m_Colors:
+      _BASE_COLOR: {r: 1, g: 0, b: 0, a: 1}
+      _BaseColor: {r: 1, g: 0.6508254, b: 0.33490562, a: 0.78431374}
+      _Boarder_Color: {r: 0, g: 0, b: 0, a: 0.19215687}
+      _BoxDims: {r: 2, g: 2, b: 2, a: 2}
+      _Color: {r: 0.16785327, g: 0.51345813, b: 0.8679245, a: 1}
+      _Color_A: {r: 1, g: 0, b: 0, a: 1}
+      _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
+      _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+      _Emission1: {r: 1, g: 0, b: 0, a: 1}
+      _Emission2: {r: 0, g: 0.00095696317, b: 0.0014801923, a: 1}
+      _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+      _FlowDirection: {r: 1, g: 0, b: 0, a: 0}
+      _FlowDirection1: {r: 0.05, g: 0, b: 0, a: 1}
+      _FlowDirection2: {r: 0, g: 0.05, b: 0, a: 1}
+      _HColor: {r: 0.95, g: 0.95, b: 0.95, a: 1}
+      _MainColor: {r: 0.6509434, g: 0.36239427, b: 0.1013261, a: 1}
+      _MatCapColor: {r: 0.02, g: 0.02, b: 0.02, a: 1}
+      _MovementDirection: {r: 0, g: -1, b: 0, a: 1}
+      _Offset: {r: 0, g: 0, b: 0, a: 0}
+      _OutlineColor: {r: 0.012286487, g: 0.057805434, b: 0.11443538, a: 1}
+      _OverlayColor: {r: 0.6698113, g: 0.50471264, b: 0.05371129, a: 1}
+      _OverlayMask2Center: {r: 0, g: 0, b: 0, a: 0}
+      _OverlayMask2ScaleXYZ: {r: 1, g: 1, b: 1, a: 0}
+      _ReflectionColor: {r: 1, g: 0, b: 0, a: 1}
+      _RimColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+      _SColor: {r: 0.1512549, g: 0.55856705, b: 0.9716981, a: 1}
+      _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 1}
+      _ScrollDirection: {r: 0, g: 0, b: 0, a: 0}
+      _ShadowTint: {r: 0.85882354, g: 0.47794113, b: 0.13333334, a: 1}
+      _SnowColor: {r: 1, g: 1, b: 1, a: 1}
+      _SnowDirection: {r: 0, g: 1, b: 0, a: 1}
+      _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+      _SpecularColor: {r: 0.17354932, g: 0.3841057, b: 0.9433962, a: 1}
+      _Texture_1_Color: {r: 0.028301895, g: 0.028301895, b: 0.028301895, a: 1}
+      _Tiling: {r: 1, g: 1, b: 0, a: 0}
+      _VariationColorA: {r: 1, g: 0.97446656, b: 0.9386792, a: 0}
+      _VariationColorB: {r: 0.97900003, g: 0.97900003, b: 0.97900003, a: 1}
+      _WindDirection: {r: 1, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
