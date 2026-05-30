@@ -82,7 +82,7 @@ public class VoxToJsonEditorWindow : EditorWindow
         {
             EditorUtility.DisplayProgressBar("Processing", "Parsing .vox binary data...", 0.3f);
 
-            VoxJsonWrapper resultData = ParseVoxFile(fullInputPath);
+            VoxelData resultData = ParseVoxFile(fullInputPath);
 
             EditorUtility.DisplayProgressBar("Processing", "Serializing to JSON...", 0.7f);
 
@@ -102,7 +102,7 @@ public class VoxToJsonEditorWindow : EditorWindow
         }
     }
 
-    private VoxJsonWrapper ParseVoxFile(string path)
+    private VoxelData ParseVoxFile(string path)
     {
         byte[] fileBytes = File.ReadAllBytes(path);
         ReadOnlySpan<byte> span = fileBytes;
@@ -165,11 +165,11 @@ public class VoxToJsonEditorWindow : EditorWindow
         }
 
         // 3. Đổ dữ liệu vào Wrapper và Map tọa độ chính xác sang hệ Y-up của Unity
-        VoxJsonWrapper wrapper = new VoxJsonWrapper();
-
-        // Hoán đổi trục kích thước tổng thể bounding box
-        wrapper.size = new VolumeSize { x = origSizeX, y = origSizeZ, z = origSizeY };
-        wrapper.voxels = new List<VoxelJsonData>(rawVoxels.Count);
+        VoxelData wrapper = new VoxelData
+        {
+            size = new VolumeSize { x = origSizeX, y = origSizeZ, z = origSizeY },
+            voxels = new List<VoxelJsonData>(rawVoxels.Count)
+        };
 
         foreach (var v in rawVoxels)
         {
@@ -181,7 +181,8 @@ public class VoxToJsonEditorWindow : EditorWindow
                 x = v[0],
                 y = v[2], // Đổi trục Z-up gốc thành Y-up của Unity
                 z = v[1], // Đổi trục Y gốc thành Z của Unity
-                color = colorHex
+                color = colorHex,
+                type = VoxelType.Normal // Mặc định gán tất cả voxel là Normal, có thể mở rộng sau này nếu cần
             });
         }
 

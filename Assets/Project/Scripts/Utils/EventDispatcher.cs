@@ -3,123 +3,158 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Static EventDispatcher - Hệ thống quản lý sự kiện toàn cục không cần Mono.
-/// Hỗ trợ đăng ký, hủy, kích hoạt sự kiện bằng string với cơ chế an toàn.
+/// Static EventDispatcher - Hệ thống quản lý sự kiện toàn cục tối ưu (Zero GC Alloc).
+/// Sử dụng Generic Delegate để loại bỏ hoàn toàn Boxing/Unboxing.
 /// </summary>
 public static class EventDispatcher
 {
-    private static readonly Dictionary<string, Action<object[]>> _eventTable = new Dictionary<string, Action<object[]>>();
+    // Dùng chung một bảng băm duy nhất lưu trữ mọi loại Delegate
+    private static readonly Dictionary<string, Delegate> _eventTable = new Dictionary<string, Delegate>();
 
-    #region Basic Methods
+    #region Add Listener
 
     /// <summary>
-    /// Đăng ký lắng nghe sự kiện
+    /// Đăng ký sự kiện (KHÔNG CÓ tham số)
     /// </summary>
-    public static void AddListener(string eventName, Action<object[]> listener)
+    public static void AddListener(string eventName, Action listener)
     {
-        if (!_eventTable.ContainsKey(eventName))
-            _eventTable[eventName] = null;
-
-        _eventTable[eventName] += listener;
+        OnListenerAdding(eventName, listener);
     }
 
     /// <summary>
-    /// Hủy đăng ký sự kiện (Luôn gọi khi đối tượng bị hủy)
+    /// Đăng ký sự kiện (CÓ 1 tham số)
     /// </summary>
-    public static void RemoveListener(string eventName, Action<object[]> listener)
+    public static void AddListener<T>(string eventName, Action<T> listener)
     {
-        if (_eventTable.ContainsKey(eventName))
-        {
-            _eventTable[eventName] -= listener;
-
-            if (_eventTable[eventName] == null)
-            {
-                _eventTable.Remove(eventName);
-            }
-        }
+        OnListenerAdding(eventName, listener);
     }
 
     /// <summary>
-    /// Kích hoạt sự kiện
+    /// Đăng ký sự kiện (CÓ 2 tham số)
     /// </summary>
-    /// <param name="debug">Nếu true, sẽ in log khi sự kiện được bắn</param>
-    public static void PostEvent(string eventName, bool debug = false, params object[] parameters)
+    public static void AddListener<T1, T2>(string eventName, Action<T1, T2> listener)
     {
-        if (debug) Debug.Log($"[EventDispatcher] Post: {eventName}");
+        OnListenerAdding(eventName, listener);
+    }
 
-        if (_eventTable.TryGetValue(eventName, out var action) && action != null)
+    private static void OnListenerAdding(string eventName, Delegate listener)
+    {
+        if (!_eventTable.TryGetValue(eventName, out var existingDelegate))
         {
-            action(parameters);
+            _eventTable[eventName] = listener;
         }
-        else if (debug)
+        else
         {
-            Debug.LogWarning($"[EventDispatcher] Không có listener nào cho sự kiện: {eventName}");
+            // Kết hợp delegate mới vào danh sách hiện tại
+            _eventTable[eventName] = Delegate.Combine(existingDelegate, listener);
         }
     }
 
     #endregion
 
-    #region Advanced Methods
+    #region Remove Listener
 
-    /// <summary>
-    /// Đăng ký lắng nghe sự kiện chỉ 1 lần duy nhất, sau đó tự hủy
-    /// </summary>
-    public static void AddOnceListener(string eventName, Action<object[]> listener)
+    public static void RemoveListener(string eventName, Action listener)
     {
-        Action<object[]> wrapper = null;
-        wrapper = (parameters) =>
-        {
-            RemoveListener(eventName, wrapper);
-            listener(parameters);
-        };
-        AddListener(eventName, wrapper);
+        OnListenerRemoving(eventName, listener);
     }
 
-    /// <summary>
-    /// Gọi sự kiện an toàn (bọc trong try-catch để tránh crash khi listener lỗi)
-    /// </summary>
-    public static void SafePostEvent(string eventName, params object[] parameters)
+    public static void RemoveListener<T>(string eventName, Action<T> listener)
     {
-        try
+        OnListenerRemoving(eventName, listener);
+    }
+
+    public static void RemoveListener<T1, T2>(string eventName, Action<T1, T2> listener)
+    {
+        OnListenerRemoving(eventName, listener);
+    }
+
+    private static void OnListenerRemoving(string eventName, Delegate listener)
+    {
+        if (_eventTable.TryGetValue(eventName, out var existingDelegate))
         {
-            if (_eventTable.TryGetValue(eventName, out var action) && action != null)
+            var newDelegate = Delegate.Remove(existingDelegate, listener);
+            if (newDelegate == null)
             {
-                action(parameters);
+                _eventTable.Remove(eventName);
+            }
+            else
+            {
+                _eventTable[eventName] = newDelegate;
             }
         }
-        catch (Exception e)
+    }
+
+    #endregion
+
+    #region Post Event
+
+    /// <summary>
+    /// Phát sự kiện (KHÔNG CÓ tham số)
+    /// </summary>
+    public static void PostEvent(string eventName)
+    {
+        if (_eventTable.TryGetValue(eventName, out var d))
         {
-            Debug.LogError($"[EventDispatcher] Lỗi khi xử lý sự kiện {eventName}: {e.Message}\n{e.StackTrace}");
+            if (d is Action action)
+            {
+                action.Invoke();
+            }
+            else
+            {
+                Debug.LogError($"[EventDispatcher] Lỗi kiểu dữ liệu! Sự kiện '{eventName}' yêu cầu tham số nhưng lại được gọi không có tham số.");
+            }
         }
     }
 
     /// <summary>
-    /// Kiểm tra xem sự kiện đã có ai đăng ký chưa
+    /// Phát sự kiện (CÓ 1 tham số)
     /// </summary>
-    public static bool HasListener(string eventName)
+    public static void PostEvent<T>(string eventName, T arg)
     {
-        return _eventTable.ContainsKey(eventName) && _eventTable[eventName] != null;
-    }
-
-    /// <summary>
-    /// Lấy số lượng listener đang đăng ký cho sự kiện này
-    /// </summary>
-    public static int GetListenerCount(string eventName)
-    {
-        if (_eventTable.TryGetValue(eventName, out var action) && action != null)
+        if (_eventTable.TryGetValue(eventName, out var d))
         {
-            return action.GetInvocationList().Length;
+            if (d is Action<T> action)
+            {
+                action.Invoke(arg);
+            }
+            else
+            {
+                Debug.LogError($"[EventDispatcher] Lỗi kiểu dữ liệu! Sự kiện '{eventName}' được đăng ký với kiểu khác so với lúc phát ({typeof(T)}).");
+            }
         }
-        return 0;
     }
 
     /// <summary>
-    /// Xóa toàn bộ danh sách sự kiện (Nên gọi khi chuyển Scene hoặc reset game)
+    /// Phát sự kiện (CÓ 2 tham số)
     /// </summary>
+    public static void PostEvent<T1, T2>(string eventName, T1 arg1, T2 arg2)
+    {
+        if (_eventTable.TryGetValue(eventName, out var d))
+        {
+            if (d is Action<T1, T2> action)
+            {
+                action.Invoke(arg1, arg2);
+            }
+        }
+    }
+
+    #endregion
+
+    #region Utilities
+
     public static void ClearAllEvents()
     {
         _eventTable.Clear();
         Debug.Log("[EventDispatcher] Đã xóa toàn bộ sự kiện!");
+    }
+
+    public static void ClearEvent(string eventName)
+    {
+        if (_eventTable.Remove(eventName))
+        {
+            Debug.Log($"[EventDispatcher] Đã xóa sự kiện: {eventName}");
+        }
     }
 
     #endregion

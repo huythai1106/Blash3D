@@ -32,21 +32,18 @@ public class LevelEditorManagerEditor : Editor
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("📂 Mở File (Load JSON)"))
         {
-            string path = EditorUtility.OpenFilePanel("Chọn file Level JSON", Application.dataPath, "json");
-            if (!string.IsNullOrEmpty(path))
+            if (manager.levelData)
             {
-                manager.LoadLevelFromPath(path);
+                manager.LoadLevelFromScriptableObject();
                 SceneView.RepaintAll();
             }
         }
 
         if (GUILayout.Button("💾 Lưu File (Save JSON)"))
         {
-            string path = EditorUtility.SaveFilePanel("Lưu file Level JSON", Application.dataPath, "new_level_data", "json");
-            if (!string.IsNullOrEmpty(path))
+            if (manager.levelData)
             {
-                manager.SaveLevelToPath(path);
-                if (path.StartsWith(Application.dataPath)) AssetDatabase.Refresh();
+                manager.SaveLevelToScriptableObject();
             }
         }
 

@@ -15,12 +15,20 @@ namespace CubeLand.Gameplay
     }
 
     [Serializable]
+    public enum VoxelType
+    {
+        Normal,
+        Stone,
+    }
+
+    [Serializable]
     public struct VoxelJsonData
     {
         public int x;
         public int y;
         public int z;
         public string color;
+        public VoxelType type;
     }
 
     [Serializable]
@@ -32,7 +40,7 @@ namespace CubeLand.Gameplay
     }
 
     [Serializable]
-    public struct ColorCount
+    public class ColorCount
     {
         public string color;
         public int count;
@@ -40,13 +48,12 @@ namespace CubeLand.Gameplay
 
 
     [Serializable]
-    public class VoxJsonWrapper
+    public class VoxelData
     {
         public VolumeSize size;
         public List<VoxelJsonData> voxels;
-        public Dictionary<string, int> colorCounts; // Tùy chọn: Thống kê số lượng mỗi màu xuất hiện
+        public List<ColorCount> colorCountList; // Tùy chọn: Danh sách màu sắc và số lượng, có thể dùng để hiển thị trong editor hoặc gameplay
         public LevelMark mark; // Dùng để đánh dấu mức độ khó của voxel, có thể dùng để điều chỉnh gameplay sau này
-        public Dictionary<int, ColorCount> colorsEachLayer; // Dùng để lưu trữ thông tin màu sắc và số lượng voxels của từng layer, hỗ trợ cho việc hiển thị thông tin chi tiết trong editor hoặc gameplay
     }
 
     public class VoxelNode
@@ -56,10 +63,22 @@ namespace CubeLand.Gameplay
         public Vector3Int pos;
         public Renderer renderer;
         public Color currentColor; // Cache màu để lưu file nhanh
+        public VoxelType type;
+    }
+
+    public enum BoosterType
+    {
+
     }
 
     public static class Constant
     {
+        public static string OnTurretMoveToActiveBarEvent = "OnTurretMoveToActiveBar";
+        public static string OnBoardInitEvent = "OnBoardInit";
+        public static string OnBoardUpdateEvent = "OnBoardUpdate";
+        public static string OnLevelCompleteEvent = "OnLevelComplete";
+        public static string OnLevelFailedEvent = "OnLevelFailed";
+
         public static string[] colorList = new string[]
         {
             "#fe65ca",
