@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5070402956935476382}
   - component: {fileID: 131762153679451610}
   - component: {fileID: 2815906826973069934}
-  m_Layer: 0
+  - component: {fileID: 9166663864199828378}
+  m_Layer: 6
   m_Name: VoxPrefabGamePlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,4 +98,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voxelRenderer: {fileID: 131762153679451610}
+  boxCollider: {fileID: 9166663864199828378}
   voxelHitEffect: {fileID: 198652111419272469, guid: 32d038496670af44cafe91c2d05998fd, type: 3}
+--- !u!65 &9166663864199828378
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359683023880819012}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.99999905, y: 1.0000014, z: 0.9999991}
+  m_Center: {x: 0.0000023841858, y: 0, z: 0}

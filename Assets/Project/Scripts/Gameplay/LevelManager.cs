@@ -37,7 +37,7 @@ namespace CubeLand.Gameplay
             levelCreator.GenerateVoxelModel(levelData.voxelData);
 
             // 2. Khởi tạo ma trận bàn cờ và ụ súng phía dưới
-            board.InitializeBoard(levelData.gridData);
+            CoroutineManager.Instance.RunCoroutine(board.InitializeBoard(levelData.gridData));
 
             GameManager.Instance.ChangeState(GameState.Playing);
         }

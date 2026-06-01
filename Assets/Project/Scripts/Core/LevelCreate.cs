@@ -144,18 +144,29 @@ namespace CubeLand.Gameplay
             {
                 VoxelControl voxel = kvp.Value;
 
+                // BƯỚC 1: Lọc điều kiện cơ bản (O(1) - Cực nhanh)
                 if (voxel.MyColor != targetColor || voxel.IsTargeted)
                 {
-                    continue; // Không trùng màu hoặc đã có đứa nhắm -> Bỏ qua, check viên tiếp theo
+                    continue;
                 }
 
-                if (!voxel.IsExposedAndFacingCamera(mainCamera)) continue;
-
-                if (GeometryUtility.TestPlanesAABB(frustumPlanes, voxel.VoxelBounds))
+                // BƯỚC 2: Đẩy Frustum Culling lên trước bằng toán học AABB
+                // Chỉ những viên thực sự nằm trong tầm nhìn của Camera mới đi tiếp xuống bước 3
+                if (!GeometryUtility.TestPlanesAABB(frustumPlanes, voxel.VoxelBounds))
                 {
-                    voxel.LockTarget();
-                    return voxel;
+                    continue;
                 }
+
+                // BƯỚC 3: Kiểm tra hướng bề mặt + Raycast vật cản
+                // Nhờ bước 2 lọc trước, số lượng Voxel phải chạy Raycast ở đây giảm đi từ 70% - 80%
+                if (!voxel.IsExposedAndFacingCamera(mainCamera, GameManager.Instance.layerVoxel))
+                {
+                    continue;
+                }
+
+                // Thỏa mãn tất cả điều kiện chặt chẽ
+                voxel.LockTarget();
+                return voxel;
             }
 
             return null; // Không còn mục tiêu nào thỏa mãn trên màn hình

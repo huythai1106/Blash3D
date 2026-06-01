@@ -13,7 +13,7 @@ namespace CubeLand.Gameplay
         [SerializeField] private Renderer barrelRenderer;
 
         public ShooterConfig config;
-        public Animation anim;
+        public Animator anim;
         private int currentAmmo;
         private int colorIndex = 0;
 
@@ -25,7 +25,7 @@ namespace CubeLand.Gameplay
         private LevelCreator cachedLevelCreator;
 
         private bool isAutoFiring = false; // Mặc định tắt khi nằm ở hàng đợi dưới
-        private float rotationSpeed = 270f; // Tốc độ xoay tháp súng (độ/giây)
+        private float rotationSpeed = 360f; // Tốc độ xoay tháp súng (độ/giây)
 
         // --- CÁC BIẾN MỚI THÊM ĐỂ TRACKING MỤC TIÊU ---
         private VoxelControl currentTarget;
@@ -39,18 +39,16 @@ namespace CubeLand.Gameplay
         {
             this.isAutoFiring = true;
         }
-        private Cell attachedSlot; // Tham chiếu đến Cell đang gắn tháp súng này (nếu cần)
 
         public TextMeshPro ammoText;
 
-        public void Init(ShooterConfig shooterConfig, Cell slot)
+        public void Init(ShooterConfig shooterConfig)
         {
             this.config = shooterConfig;
             SetAmmoText(config.ammoCount);
             speedRate = GameManager.Instance.gunTurretConfig.speedRate;
 
             this.cachedLevelCreator = FindObjectOfType<LevelCreator>();
-            this.attachedSlot = slot;
 
             this.fireCooldown = 1f / Mathf.Max(0.1f, speedRate);
             this.fireTimer = fireCooldown;
@@ -85,7 +83,7 @@ namespace CubeLand.Gameplay
             }
 
             // 2. NGẮM & BẮN: Nếu đã khóa được mục tiêu
-            if (currentTarget != null)
+            if (currentTarget != null && GameManager.Instance.CurrentInputState == GameInputState.None)
             {
                 // Optional: Nếu Voxel bị ụ súng khác bắn nổ trước khi mình kịp bắn, cần reset
                 if (!currentTarget.gameObject.activeInHierarchy)
@@ -132,9 +130,8 @@ namespace CubeLand.Gameplay
             SpawnBullet(target, bulletColor);
 
             currentAmmo--;
-            SetAmmoText(currentAmmo);
             gunTurretState.SetState(TurretState.Shooting);
-            gunTurretState.UpdateAnimation();
+            SetAmmoText(currentAmmo);
             UpdateTurretVisual();
         }
 
@@ -198,7 +195,7 @@ namespace CubeLand.Gameplay
 
         public override void OnBoardInit()
         {
-            if (attachedSlot.isInteractable)
+            if (cell.isInteractable)
             {
                 gunTurretState.SetState(TurretState.ReadyIdle);
             }
@@ -208,15 +205,94 @@ namespace CubeLand.Gameplay
             }
         }
 
+        public override void OnSlotClicked()
+        {
+            switch (config.type)
+            {
+                case ShooterType.Normal:
+                case ShooterType.Hidden:
+                    if (config.linkGroupId != 0)
+                    {
+                        TryMoveToActiveFollowLinkGroupID(config.linkGroupId);
+                    }
+                    else
+                    {
+                        var result = TryMoveToActiveBar();
+                        if (result)
+                        {
+                            EventDispatcher.PostEvent(Constant.OnTurretMoveToActiveBarEvent);
+                        }
+                    }
+                    break;
+                case ShooterType.Frozen:
+                    // Logic bắn đóng băng (ví dụ: bắn ra đạn đóng băng làm chậm hoặc đóng băng tạm thời các voxel mục tiêu...)
+                    break;
+                default:
+                    TryMoveToActiveBar();
+                    break;
+            }
+        }
+
+        public void TryMoveToActiveFollowLinkGroupID(int linkGroupId)
+        {
+            // B1: tìm tất cả các Cell khác trong cùng hàng có linkGroupId giống nhau
+            // B2: kiểm tra xem tất cả các Cell ở hàng đầu chưa
+            // B3: check xem ActiveBar có đủ chỗ cho tất cả các Cell này không
+            // B4: nếu đủ chỗ thì tất cả các Cell này cùng bay lên ActiveBar (giả sử có 3 turrnet, và còn 3 slot trống lần lượt có vị trí là _+_+_ (_ là vị trí trống, + là vị trí có súng), thì sẽ di chuyển vị trí có súng về đầu để có thể có 3 slot liên tiếp), nếu không đủ thì không bay con nào cả
+        }
+
+        public bool TryMoveToActiveBar()
+        {
+            if (cell.isInteractable && ActiveBar.Instance.HasEmptySlot())
+            {
+                // 1. Tạm thời vô hiệu hóa tương tác để tránh bấm spam khi súng đang bay
+                cell.isInteractable = false;
+
+                // 2. Lấy vị trí đích từ ActiveBar (giả sử ActiveBar cung cấp điểm nhảy đến)
+                Transform targetSlot = ActiveBar.Instance.GetNextAvailableSlot();
+
+                // 3. HIỆU ỨNG SÚNG NHẢY LÊN (DOJump)
+                transform.SetParent(null); // Tách súng ra khỏi Cell để nó bay tự do
+                // gunTurretState.SetState(TurretState.FirstShot);
+                transform.DOJump(targetSlot.position, 1.5f, 1, 0.3f)
+                    .OnComplete(() =>
+                    {
+                        // Khi súng đã nhảy đến nơi:
+                        ActiveBar.Instance.RegisterTurret(this, targetSlot);
+                        this.ActivateAutoFire();
+                    });
+
+                // 4. Báo Board tịnh tiến các Cell phía sau lên (DOMove)
+                board.OnCellDisplaced(cell, colIndex);
+
+                // 5. Hủy vỏ Cell (cái bệ chứa súng)
+                // Bạn có thể cho cái bệ nó scale nhỏ dần hoặc biến mất sau khi súng nhảy đi
+                cell.transform.DOScale(0, 0.2f).OnComplete(() => SimplePool.Instance.Despawn(cell.gameObject));
+                cell = null; // Ngắt tham chiếu đến Cell đã bị hủy
+
+                return true;
+            }
+            else
+            {
+                gunTurretState.SetState(TurretState.NotReadyClick, () =>
+                {
+                    gunTurretState.SetState(TurretState.ReadyIdle);
+                });
+                return false;
+            }
+        }
+
         public override void OnBoardUpdate(int colParams)
         {
+            if (cell == null) return; // Đã bay lên Active Slot rồi thì thôi, không cần update nữa
+
             if (colParams == colIndex)
             {
                 if (gunTurretState.currentState == TurretState.ReadyIdle)
                 {
                     gunTurretState.SetState(TurretState.FirstShot);
                 }
-                else if (!attachedSlot.isInteractable)
+                else if (!cell.isInteractable)
                 {
                     gunTurretState.SetState(TurretState.NotReadyToNotReady, () =>
                     {

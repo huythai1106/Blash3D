@@ -6,7 +6,10 @@ namespace CubeLand.Gameplay
 {
     public class SlotObject : MonoBehaviour
     {
+        public SlotType slotType;
         public int colIndex;
+        public Cell cell;
+        public Board board;
 
         private void Awake()
         {
@@ -20,8 +23,18 @@ namespace CubeLand.Gameplay
             EventDispatcher.RemoveListener<int>(Constant.OnBoardUpdateEvent, OnBoardUpdate);
         }
 
+        public void Setup(Cell cell, Board board, SlotType type, int col)
+        {
+            this.slotType = type;
+            this.colIndex = col;
+            this.cell = cell;
+            this.board = board;
+        }
+
         public virtual void OnBoardInit() { }
         public virtual void OnBoardUpdate(int colIndex) { }
+        public virtual void OnReachTop() { }
+        public virtual void OnSlotClicked() { }
     }
 
 }

@@ -1,3 +1,4 @@
+using CubeLand.Gameplay;
 using UnityEngine;
 
 public class AutoRotate : MonoBehaviour
@@ -11,8 +12,7 @@ public class AutoRotate : MonoBehaviour
     // Tối ưu: Dùng Update cho chuyển động liên tục
     private void Update()
     {
-        // Xoay object dựa trên thời gian thực (Time.deltaTime) 
-        // để đảm bảo tốc độ xoay không phụ thuộc vào khung hình (FPS)
-        transform.Rotate(axis * speed * Time.deltaTime);
+        if (GameManager.Instance.CurrentInputState == GameInputState.None)
+            transform.Rotate(speed * Time.deltaTime * axis);
     }
 }

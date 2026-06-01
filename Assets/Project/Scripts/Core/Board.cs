@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,9 +18,9 @@ namespace CubeLand.Gameplay
         private List<Cell>[] boardColumns;
         public bool isMovingCells = false; // Flag để khóa tương tác khi đang có Cell di chuyển
 
-        public void InitializeBoard(GridLevelData gridData)
+        public IEnumerator InitializeBoard(GridLevelData gridData)
         {
-            if (gridData == null || gridData.slots == null) return;
+            if (gridData == null || gridData.slots == null) yield break;
 
             this.columnCount = gridData.columnCount;
             this.boardColumns = new List<Cell>[columnCount];
@@ -46,6 +47,8 @@ namespace CubeLand.Gameplay
 
             // 4. Thiết lập trạng thái tương tác ban đầu
             UpdateInteractableCells();
+
+            yield return null; // Đợi 1 frame để đảm bảo tất cả Cell đã được khởi tạo xong
             EventDispatcher.PostEvent(Constant.OnBoardInitEvent);
         }
 

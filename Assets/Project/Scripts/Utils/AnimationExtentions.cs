@@ -2,51 +2,70 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public static class AnimationExtensions
+public static class AnimatorExtensions
 {
     /// <summary>
-    /// Play animation (Legacy) và gọi callback khi kết thúc thực tế.
-    /// Tự động hủy nếu bị đè bởi animation khác hoặc bị dừng đột ngột.
+    /// Play một State trong Animator và gọi callback khi chạy xong.
     /// </summary>
-    public static void Play(this Animation animation, string clipName, Action callback)
+    public static void PlayWithCallback(this Animator animator, string stateName, Action onComplete)
     {
-        if (animation == null)
-        {
-            Debug.LogError("Animation component bị null!");
-            return;
-        }
+        if (animator == null) return;
 
-        AnimationState state = animation[clipName];
-        if (state == null)
-        {
-            Debug.LogError($"Animation State '{clipName}' không tồn tại trên component!");
-            return;
-        }
+        // 1. Gọi Play như bình thường
+        AnimationClip animationClip = GetAnimationClip(animator, stateName);
 
-        // Thực hiện chơi animation
-        animation.Play(clipName);
+        animator.Play(stateName, 0);
 
-        // Chạy Coroutine kiểm tra runtime state theo frame thay vì chờ thời gian cứng
-        CoroutineManager.Instance.RunCoroutine(WaitForLegacyAnimation(animation, state, callback));
+        // 2. Chạy Coroutine kiểm tra tiến trình
+        CoroutineManager.Instance.RunCoroutine(WaitForAnimatorComplete(animator, stateName, onComplete));
     }
 
-    private static IEnumerator WaitForLegacyAnimation(Animation animation, AnimationState state, Action callback)
+    public static AnimationClip GetAnimationClip(this Animator animator, string clipName)
     {
+        if (!animator.runtimeAnimatorController)
+        {
+            Debug.LogError(animator.name + " không có AnimatorController", animator);
+            return null;
+        }
+
+        RuntimeAnimatorController runtimeAnimatorController = animator.runtimeAnimatorController;
+        foreach (AnimationClip clip in runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == clipName)
+            {
+                return clip;
+            }
+        }
+
+        return null;
+    }
+
+    private static IEnumerator WaitForAnimatorComplete(Animator animator, string stateName, Action callback)
+    {
+        // BẮT BUỘC: Chờ 1 frame để Animator cập nhật sang State mới.
+        // Nếu không có dòng này, GetCurrentAnimatorStateInfo sẽ lấy nhầm thông tin của State TRƯỚC ĐÓ.
+        yield return null;
+
+        if (animator == null) yield break;
+
         while (true)
         {
-            yield return null; // Chờ frame tiếp theo (Zero Allocation)
+            yield return null; // Chờ frame tiếp theo (Zero Alloc)
 
-            if (animation == null) yield break;
+            if (animator == null) yield break;
 
-            if (!state.enabled || !animation.IsPlaying(state.name))
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+            // TRƯỜNG HỢP 1: State hiện tại không còn trùng tên (Bị đè bởi anim khác hoặc chuyển trạng thái)
+            if (!stateInfo.IsName(stateName))
             {
-                yield break;
+                yield break; // Tự hủy, không gọi callback
             }
 
-            // TRƯỜNG HỢP 3: Animation chạy hết thời gian thực tế của nó (Đã xong)
-            if (state.normalizedTime >= 0.99f && state.wrapMode != WrapMode.Loop)
+            // TRƯỜNG HỢP 2: Đã chạy đến cuối (> 99%) và KHÔNG trong quá trình Transition sang state khác
+            if (stateInfo.normalizedTime >= 0.99f && !animator.IsInTransition(0))
             {
-                break; // Thoát vòng lặp để gọi callback
+                break; // Xong! Thoát vòng lặp để gọi callback
             }
         }
 

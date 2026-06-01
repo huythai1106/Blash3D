@@ -13,11 +13,11 @@ namespace CubeLand.Gameplay
 
     public class GunTurretState
     {
-
-        public Animation anim;
+        private static readonly int ShootingHash = Animator.StringToHash("Shooting");
+        public Animator anim;
         public TurretState currentState;
 
-        public GunTurretState(Animation anim)
+        public GunTurretState(Animator anim)
         {
             this.anim = anim;
         }
@@ -27,34 +27,34 @@ namespace CubeLand.Gameplay
             switch (currentState)
             {
                 case TurretState.Shooting:
-                    anim.Play("Shooting", callback);
+                    anim.PlayWithCallback("Shooting", null);
                     break;
                 case TurretState.EndShot:
-                    anim.Play("EndShot", callback);
+                    anim.PlayWithCallback("EndShot", callback);
                     break;
                 case TurretState.WaitingShot:
-                    anim.Play("WaitingShot", callback);
+                    anim.PlayWithCallback("WaitingShot", callback);
                     break;
                 case TurretState.FirstShot:
-                    anim.Play("FirstShot", callback);
+                    anim.PlayWithCallback("FirstShot", callback);
                     break;
                 case TurretState.ReadyIdle:
-                    anim.Play("ReadyIdle", callback);
+                    anim.PlayWithCallback("ReadyIdle", callback);
                     break;
                 case TurretState.NotReadyIdle:
-                    anim.Play("NotReadyIdle", callback);
+                    anim.PlayWithCallback("NotReadyIdle", callback);
                     break;
                 case TurretState.NotReadyToReady:
-                    anim.Play("NotReadyToReady", callback);
+                    anim.PlayWithCallback("NotReadyToReady", callback);
                     break;
                 case TurretState.NotReadyToNotReady:
-                    anim.Play("NotReadyToNotReady", callback);
+                    anim.PlayWithCallback("NotReadyToNotReady", callback);
                     break;
                 case TurretState.NotReadyClick:
-                    anim.Play("NotReadyClick", callback);
+                    anim.PlayWithCallback("NotReadyClick", callback);
                     break;
                 case TurretState.NoTarget:
-                    anim.Play("NoTaget", callback);
+                    anim.PlayWithCallback("NoTaget", callback);
                     break;
                 default:
                     Debug.LogWarning($"Unknown turret state: {currentState}");
